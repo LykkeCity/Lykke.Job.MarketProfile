@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
 using Autofac;
@@ -7,6 +7,8 @@ using JetBrains.Annotations;
 using Lykke.Common.Log;
 using Lykke.Job.MarketProfile.Domain.Repositories;
 using Lykke.Job.MarketProfile.Domain.Services;
+using Lykke.Job.MarketProfile.DomainServices;
+using Lykke.Job.MarketProfile.NoSql.Models;
 
 namespace Lykke.Job.MarketProfile.PeriodicalHandlers
 {
@@ -14,6 +16,7 @@ namespace Lykke.Job.MarketProfile.PeriodicalHandlers
     public class PersistHandler: IStartable, IDisposable
     {
         private readonly TimeSpan _persistPeriod;
+        private readonly IMyNoSqlWriterWrapper<AssetPairPriceNoSql> _myNoSqlWriterWrapper;
         private readonly IAssetPairsCacheService _cacheService;
         private readonly IAssetPairsRepository _repository;
         private Timer _timer;
@@ -21,12 +24,14 @@ namespace Lykke.Job.MarketProfile.PeriodicalHandlers
 
         public PersistHandler(
             TimeSpan persistPeriod,
+            IMyNoSqlWriterWrapper<AssetPairPriceNoSql> myNoSqlWriterWrapper,
             IAssetPairsCacheService cacheService,
             IAssetPairsRepository repository,
             ILogFactory logFactory
             )
         {
             _persistPeriod = persistPeriod;
+            _myNoSqlWriterWrapper = myNoSqlWriterWrapper;
             _cacheService = cacheService;
             _repository = repository;
             _log = logFactory.CreateLog(this);
@@ -50,7 +55,7 @@ namespace Lykke.Job.MarketProfile.PeriodicalHandlers
             {
                 var pairs = _cacheService.GetAll();
 
-                await _repository.WriteAsync(pairs.Select(AssetPair.Create).ToArray());
+                await _repository.WriteAsync(pairs.Select(AssetPairPrice.Create).ToArray());
             }
             catch (Exception ex)
             {

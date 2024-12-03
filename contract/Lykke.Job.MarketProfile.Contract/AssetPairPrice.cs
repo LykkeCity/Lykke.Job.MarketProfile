@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Lykke.Job.MarketProfile.Contract
 {
-    public class AssetPairPrice
+    public class AssetPairPrice : IAssetPair
     {
         [Required]
         public string AssetPair { get; set; }

@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Description>Client for Antares.Service.MarketProfile API</Description>
+    <Authors>Swisschain</Authors>
+    <Company>Swisschain</Company>
+    <Product>Antares.Service.MarketProfile</Product>
+    <PackageLicenseUrl>https://github.com/LykkeCity/Lykke.Service.MarketProfile/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/swisschain/Antares.Job.MarketProfile</PackageProjectUrl>
+    <PackageIconUrl>https://avatars2.githubusercontent.com/u/60782394</PackageIconUrl>
+    <RepositoryUrl>https://github.com/swisschain/Antares.Job.MarketProfile.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Antares</PackageTags>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lykke.Common" Version="7.5.0" />
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.20" />
+    <PackageReference Include="MyNoSqlServer20.DataReader" Version="1.2.18" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\contract\Lykke.Job.MarketProfile.Contract\Lykke.Job.MarketProfile.Contract.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\..\src\Lykke.Job.MarketProfile.NoSql\Lykke.Job.MarketProfile.NoSql.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\Lykke.Service.MarketProfile.Client\Antares.Service.MarketProfile.LykkeClient.csproj" PrivateAssets="All" />
+  </ItemGroup>
+
+  <!--
+    The following solves the problem that 'dotnet pack' does not include the DLLs from referenced projects.
+    See https://github.com/NuGet/Home/issues/3891 for a description of the problem
+    and for newer versions / workarounds / built-in methods.
+  -->
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>
+      $(TargetsForTfmSpecificBuildOutput);PackReferencedProjectOutputs
+    </TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <Target Name="PackReferencedProjectOutputs" DependsOnTargets="BuildOnlySettings;ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>

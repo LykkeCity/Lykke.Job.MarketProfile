@@ -1,7 +1,6 @@
-﻿using JetBrains.Annotations;
+﻿using Antares.Sdk.Settings;
+using JetBrains.Annotations;
 using Lykke.Job.MarketProfile.Settings.JobSettings;
-using Lykke.Sdk.Settings;
-
 namespace Lykke.Job.MarketProfile.Settings
 {
     [UsedImplicitly(ImplicitUseTargetFlags.WithMembers)]

@@ -1,11 +1,11 @@
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Lykke.Job.MarketProfile.Contract;
 
 namespace Lykke.Job.MarketProfile.Domain.Repositories
 {
     public interface IAssetPairsRepository
     {
-        Task<AssetPairPrice[]> ReadAsync();
-        Task WriteAsync(AssetPair[] pairs);
+        Task<Contract.AssetPairPrice[]> ReadAsync();
+        Task WriteAsync(AssetPairPrice[] pairs);
     }
 }

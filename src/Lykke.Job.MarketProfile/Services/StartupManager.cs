@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using Antares.Sdk.Services;
 using Common.Log;
 using Lykke.Common.Log;
 using Lykke.Job.MarketProfile.Domain.Repositories;
 using Lykke.Job.MarketProfile.Domain.Services;
-using Lykke.Sdk;
 
 namespace Lykke.Job.MarketProfile.Services
 {

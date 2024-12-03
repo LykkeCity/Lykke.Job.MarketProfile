@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Lykke.Sdk;
+using Antares.Sdk;
 
 namespace Lykke.Job.MarketProfile
 {

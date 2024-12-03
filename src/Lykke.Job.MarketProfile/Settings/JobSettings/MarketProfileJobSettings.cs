@@ -11,5 +11,6 @@ namespace Lykke.Job.MarketProfile.Settings.JobSettings
         public RabbitMqSettings RabbitMq { get; set; }
         public RedisSettings Redis { get; set; }
         public TimeSpan PersistPeriod { get; set; }
+        public MyNoSqlSettings MyNoSqlServer { get; set; }
     }
 }

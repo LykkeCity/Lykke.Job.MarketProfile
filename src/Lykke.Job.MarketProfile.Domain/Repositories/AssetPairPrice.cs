@@ -1,9 +1,9 @@
-using System;
+﻿using System;
 using Lykke.Job.MarketProfile.Contract;
 
 namespace Lykke.Job.MarketProfile.Domain.Repositories
 {
-    public class AssetPair
+    public class AssetPairPrice
     {
         public string Code { get; set; }
         public double BidPrice { get; set; }
@@ -11,9 +11,9 @@ namespace Lykke.Job.MarketProfile.Domain.Repositories
         public DateTime BidPriceTimestamp { get; set; }
         public DateTime AskPriceTimestamp { get; set; }
 
-        public AssetPairPrice ToAssetPairPrice()
+        public Contract.AssetPairPrice ToAssetPairPrice()
         {
-            return new AssetPairPrice
+            return new Contract.AssetPairPrice
             {
                 AssetPair = Code,
                 BidPrice = BidPrice,
@@ -23,9 +23,9 @@ namespace Lykke.Job.MarketProfile.Domain.Repositories
             };
         }
         
-        public static AssetPair Create(AssetPairPrice pair)
+        public static AssetPairPrice Create(Contract.AssetPairPrice pair)
         {
-            return new AssetPair
+            return new AssetPairPrice
             {
                 Code = pair.AssetPair,
                 BidPrice = pair.BidPrice,

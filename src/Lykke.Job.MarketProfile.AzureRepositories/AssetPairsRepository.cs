@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using Common;
 using Lykke.Job.MarketProfile.Contract;
 using Lykke.Job.MarketProfile.Domain.Repositories;
 using Newtonsoft.Json;
+using AssetPairPrice = Lykke.Job.MarketProfile.Domain.Repositories.AssetPairPrice;
 
 namespace Lykke.Job.MarketProfile.AzureRepositories
 {
@@ -23,20 +24,20 @@ namespace Lykke.Job.MarketProfile.AzureRepositories
             _storage = storage;
         }
 
-        public async Task<AssetPairPrice[]> ReadAsync()
+        public async Task<Contract.AssetPairPrice[]> ReadAsync()
         {
             if (!await _storage.HasBlobAsync(_container, _key)) 
-                return Array.Empty<AssetPairPrice>();
+                return Array.Empty<Contract.AssetPairPrice>();
             
             var data = await _storage.GetAsync(_container, _key);
             var content = Encoding.UTF8.GetString(data.ToBytes());
 
-            return JsonConvert.DeserializeObject<AssetPair[]>(content)
+            return JsonConvert.DeserializeObject<AssetPairPrice[]>(content)
                 .Select(x => x.ToAssetPairPrice())
                 .ToArray();
         }
 
-        public Task WriteAsync(AssetPair[] pairs)
+        public Task WriteAsync(AssetPairPrice[] pairs)
         {
             var data = JsonConvert.SerializeObject(pairs).ToUtf8Bytes();
 

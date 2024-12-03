@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\client\Antares.Service.MarketProfile.Client\Antares.Service.MarketProfile.Client.csproj" />
+    <ProjectReference Include="..\..\contract\Lykke.Job.MarketProfile.Contract\Lykke.Job.MarketProfile.Contract.csproj" />
+    <ProjectReference Include="..\..\src\Lykke.Job.MarketProfile.NoSql\Lykke.Job.MarketProfile.NoSql.csproj" />
+  </ItemGroup>
+
+</Project>

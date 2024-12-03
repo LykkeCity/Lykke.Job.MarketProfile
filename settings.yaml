@@ -26,6 +26,9 @@ MarketProfileJob:
     QueueSuffix:
       settings-key: MarketProfileJob-QueueSuffix
       types: [ Optional ]
+  MyNoSqlServer:
+    WriterServiceUrl:
+      settings-key: MyNoSqlServer-WriterUrl
 SlackNotifications:
     AzureQueue:
         ConnectionString:

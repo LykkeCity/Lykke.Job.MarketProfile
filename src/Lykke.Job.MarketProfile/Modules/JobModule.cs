@@ -1,4 +1,6 @@
 ﻿using System;
+using Antares.Sdk.Health;
+using Antares.Sdk.Services;
 using Autofac;
 using AzureStorage.Blob;
 using Lykke.Job.MarketProfile.AzureRepositories;
@@ -9,8 +11,6 @@ using Lykke.Job.MarketProfile.PeriodicalHandlers;
 using Lykke.Job.MarketProfile.RabbitMqSubscribers;
 using Lykke.Job.MarketProfile.Services;
 using Lykke.Job.MarketProfile.Settings;
-using Lykke.Sdk;
-using Lykke.Sdk.Health;
 using Lykke.SettingsReader;
 using StackExchange.Redis;
 

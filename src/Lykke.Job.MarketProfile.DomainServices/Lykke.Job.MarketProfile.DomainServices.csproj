@@ -1,14 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <Version>1.0.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Lykke.Job.QuotesProducer.Contract" Version="1.0.0" />
+    <PackageReference Include="MyNoSqlServer20.DataWriter" Version="1.2.6" />
     <PackageReference Include="StackExchange.Redis" Version="2.0.601" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\contract\Lykke.Job.MarketProfile.Contract\Lykke.Job.MarketProfile.Contract.csproj" />
     <ProjectReference Include="..\Lykke.Job.MarketProfile.Domain\Lykke.Job.MarketProfile.Domain.csproj" />
+    <ProjectReference Include="..\Lykke.Job.MarketProfile.NoSql\Lykke.Job.MarketProfile.NoSql.csproj" />
   </ItemGroup>
 </Project>
